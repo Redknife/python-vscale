@@ -45,20 +45,26 @@ class BaseAPI(object):
 
         # lookup table to find out the apropriate requests method,
         # headers and payload type (json or query parameters)
-        def identity(data): return data
+        def identity(data):
+            return data
 
-        def json_dumps(data): return json.dumps(data)
+        def json_dumps(data):
+            return json.dumps(data)
 
         lookup = {
             'GET': (requests.get, {}, 'params', identity),
-            'POST': (requests.post, {'Content-type': 'application/json'}, 'data',
+            'POST': (requests.post, {'Content-type': 'application/json'},
+                     'data',
                      json_dumps),
-            'PUT': (requests.put, {'Content-type': 'application/json'}, 'data',
+            'PUT': (requests.put, {'Content-type': 'application/json'},
+                    'data',
                     json_dumps),
-            'DELETE': (requests.delete, {'Content-type': 'application/json'}, 'data',
-                    json_dumps),
-            'PATCH': (requests.patch, {'Content-type': 'application/json'}, 'data',
-                    json_dumps)
+            'DELETE': (requests.delete, {'Content-type': 'application/json'},
+                       'data',
+                       json_dumps),
+            'PATCH': (requests.patch, {'Content-type': 'application/json'},
+                      'data',
+                      json_dumps)
         }
 
         requests_method, headers, payload, transform = lookup[method]

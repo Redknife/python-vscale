@@ -52,7 +52,8 @@ class Scalet(BaseAPI):
         return data
 
     def restart(self):
-        data = self.get_data("scalets/{}/restart".format(self.ctid), method='PATCH')
+        data = self.get_data("scalets/{}/restart".format(self.ctid),
+                             method='PATCH')
         for attr in data.keys():
             setattr(self, attr, data[attr])
         return data
@@ -66,13 +67,15 @@ class Scalet(BaseAPI):
         return data
 
     def stop(self):
-        data = self.get_data("scalets/{}/stop".format(self.ctid), method='PATCH')
+        data = self.get_data("scalets/{}/stop".format(self.ctid),
+                             method='PATCH')
         for attr in data.keys():
             setattr(self, attr, data[attr])
         return data
 
     def start(self):
-        data = self.get_data("scalets/{}/start".format(self.ctid), method='PATCH')
+        data = self.get_data("scalets/{}/start".format(self.ctid),
+                             method='PATCH')
         for attr in data.keys():
             setattr(self, attr, data[attr])
         return data

@@ -1,5 +1,3 @@
-from urllib.parse import urlparse, parse_qs
-
 from .baseapi import BaseAPI
 from .Account import Account
 from .Scalet import Scalet
@@ -33,7 +31,8 @@ class Manager(BaseAPI):
         return data
 
     def add_ssh_key(self, name, key):
-        data = self.get_data("sshkeys", 'POST', params={'key': key, 'name': name})
+        data = self.get_data("sshkeys", 'POST',
+                             params={'key': key, 'name': name})
         return data
 
     def delete_ssh_key(self, id):
@@ -44,8 +43,9 @@ class Manager(BaseAPI):
         return Scalet.get_object(api_token=self.token, scalet_id=scalet_id)
 
     def create_scalet(self, name,
-               made_from='ubuntu_14.04_64_002_master',
-               rplan='small', active=True, ssh_keys=[], location='spb0'):
+                      made_from='ubuntu_14.04_64_002_master',
+                      rplan='small', active=True,
+                      ssh_keys=[], location='spb0'):
 
         scalet = Scalet(token=self.token, name=name,
                         made_from=made_from, rplan=rplan,
