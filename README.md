@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Redknife/python-vscale.svg?branch=master)](https://travis-ci.org/Redknife/python-vscale)
+
 ## Возможности
  - Получение информации об аккаунте
  - Получение списка серверов
