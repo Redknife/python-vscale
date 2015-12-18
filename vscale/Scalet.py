@@ -24,6 +24,13 @@ class Scalet(BaseAPI):
         scalet.load()
         return scalet
 
+    @classmethod
+    def get_object_from_data(cls, api_token, data):
+        scalet = cls(token=api_token)
+        for attr in data.keys():
+            setattr(scalet, attr, data[attr])
+        return scalet
+
     def load(self):
         data = self.get_data("scalets/{}".format(self.ctid))
         for attr in data.keys():

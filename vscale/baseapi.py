@@ -48,23 +48,20 @@ class BaseAPI(object):
         def identity(data):
             return data
 
-        def json_dumps(data):
-            return json.dumps(data)
-
         lookup = {
             'GET': (requests.get, {}, 'params', identity),
             'POST': (requests.post, {'Content-type': 'application/json'},
                      'data',
-                     json_dumps),
+                     json.dumps),
             'PUT': (requests.put, {'Content-type': 'application/json'},
                     'data',
-                    json_dumps),
+                    json.dumps),
             'DELETE': (requests.delete, {'Content-type': 'application/json'},
                        'data',
-                       json_dumps),
+                       json.dumps),
             'PATCH': (requests.patch, {'Content-type': 'application/json'},
                       'data',
-                      json_dumps)
+                      json.dumps)
         }
 
         requests_method, headers, payload, transform = lookup[method]
@@ -84,8 +81,6 @@ class BaseAPI(object):
     def get_data(self, url, method='GET', params={}):
 
         req = self._do_request(url, method, params)
-        if req.status_code == 204:
-            return True
 
         try:
             data = req.json()

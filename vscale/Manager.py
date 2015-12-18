@@ -11,8 +11,13 @@ class Manager(BaseAPI):
         return Account.get_object(api_token=self.token)
 
     def get_all_scalets(self):
-        data = self.get_data("scalets")
-        return data
+        scalets_list = []
+        scalets_data = self.get_data("scalets")
+        for scalet_params in scalets_data:
+            scalet = Scalet.get_object_from_data(self.token, scalet_params)
+            scalets_list.append(scalet)
+
+        return scalets_list
 
     def get_tasks(self):
         data = self.get_data("tasks")
